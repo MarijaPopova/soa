@@ -1,4 +1,4 @@
-package hello;
+package models;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,7 +29,7 @@ public class Student {
     @Override
     public String toString() {
         return String.format(
-                "Customer[id=%d, firstName='%s', lastName='%s']",
+                "Customer[id=%d, firstName='%s', lastName='%s', index='%s']",
                 id, firstName, lastName, index);
     }
 

@@ -1,4 +1,4 @@
-package hello;
+package models;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,6 +15,7 @@ public class Subject {
     private String nameSubject;
     private String description;
     private String profesor;
+
     @ManyToMany(mappedBy = "subjects")
     private List<Student> students;
 
