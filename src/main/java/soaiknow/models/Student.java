@@ -1,6 +1,7 @@
-package models;
+package soaiknow.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,12 +12,14 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "student_id")
     private Long id;
     private String firstName;
     private String lastName;
     private String index;
-    @ManyToMany
-    protected List<Subject> subjects;
+    @OneToMany
+    private List<RegisterSubject> registerSubjects;
+
     public Student() {
     }
 
@@ -24,6 +27,7 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.index = index;
+        this.registerSubjects = new ArrayList<>();
     }
 
     @Override

@@ -1,4 +1,5 @@
-hello\Application.class
-hello\Customer.class
-hello\Greeting.class
-hello\GreetingController.class
+models\Subject.class
+models\Student.class
+models\StudentRecord.class
+Application.class
+models\RegisterSubject.class

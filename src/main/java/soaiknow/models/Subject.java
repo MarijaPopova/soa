@@ -1,7 +1,6 @@
-package models;
+package soaiknow.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by 133003 on 3/7/2017.
@@ -15,9 +14,6 @@ public class Subject {
     private String nameSubject;
     private String description;
     private String profesor;
-
-    @ManyToMany(mappedBy = "subjects")
-    private List<Student> students;
 
     public Long getId() {
         return id;
