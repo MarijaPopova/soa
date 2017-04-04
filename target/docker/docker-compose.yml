@@ -1,0 +1,39 @@
+version: '2'
+services:
+  my-traefik:
+    image: 133003-traefik
+    command: -c /dev/null --web --docker --docker.domain=dck.mojserver.mk
+    labels:
+      - "traefik.enable=false"
+    ports:
+      - "13380:80"
+      - "13580:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  133003-mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_USER: dbuser
+      MYSQL_PASSWORD: dbp4ss
+      MYSQL_DATABASE: demo
+    volumes:
+      - my-datavolume:/var/lib/mysql
+    labels:
+      - "traefik.enable=false"
+
+  my-app:
+    image: 133003/soa
+    labels:
+      - "traefik.port=8080"
+      - "traefik.backend=133003-app"
+      - "traefik.frontend.rule=Host:133003-app.dck.mojserver.mk"
+    links:
+      - 133003-mysql
+    depends_on:
+      - 133003-mysql
+      - 133003-traefik
+
+volumes:
+  133003-datavolume: {}

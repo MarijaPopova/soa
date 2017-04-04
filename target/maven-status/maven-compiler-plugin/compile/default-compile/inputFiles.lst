@@ -1,5 +1,8 @@
-C:\Users\SimonaS\Documents\GitHub\soa\src\main\java\models\RegisterSubject.java
-C:\Users\SimonaS\Documents\GitHub\soa\src\main\java\models\Subject.java
-C:\Users\SimonaS\Documents\GitHub\soa\src\main\java\Application.java
-C:\Users\SimonaS\Documents\GitHub\soa\src\main\java\models\StudentRecord.java
-C:\Users\SimonaS\Documents\GitHub\soa\src\main\java\models\Student.java
+/home/f133003/soa/src/main/java/soaiknow/models/RegisterSubject.java
+/home/f133003/soa/src/main/java/soaiknow/models/Student.java
+/home/f133003/soa/src/main/java/soaiknow/Application.java
+/home/f133003/soa/src/main/java/soaiknow/repository/SubjectRepository.java
+/home/f133003/soa/src/main/java/soaiknow/repository/StudentRepository.java
+/home/f133003/soa/src/main/java/soaiknow/repository/RegisterSubjectRepository.java
+/home/f133003/soa/src/main/java/soaiknow/controller/StudentController.java
+/home/f133003/soa/src/main/java/soaiknow/models/Subject.java

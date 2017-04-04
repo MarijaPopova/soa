@@ -1,5 +1,8 @@
-models\Subject.class
-models\Student.class
-models\StudentRecord.class
-Application.class
-models\RegisterSubject.class
+soaiknow/models/Student.class
+soaiknow/repository/RegisterSubjectRepository.class
+soaiknow/repository/SubjectRepository.class
+soaiknow/repository/StudentRepository.class
+soaiknow/Application.class
+soaiknow/models/Subject.class
+soaiknow/models/RegisterSubject.class
+soaiknow/controller/StudentController.class
