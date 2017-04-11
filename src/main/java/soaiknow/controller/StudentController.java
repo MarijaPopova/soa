@@ -19,7 +19,7 @@ public class StudentController {
     @Autowired
     RegisterSubjectRepository registerSubjectRepository;
 
-    @RequestMapping(value = "/studentRegistry")
+    @RequestMapping(value = "studentRegistry")
     public List<RegisterSubject> listStudentRegisters(@RequestParam(value = "student") Student student){
         List<RegisterSubject> registers = registerSubjectRepository.findByStudent(student);
         return registers;
