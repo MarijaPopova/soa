@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import soaiknow.models.Role;
 import soaiknow.models.Roles;
 import soaiknow.models.User;
+import soaiknow.repository.RoleRepository;
+import soaiknow.service.RoleService;
 import soaiknow.service.SecurityService;
 import soaiknow.service.UserService;
 
@@ -26,29 +28,28 @@ public class UserController {
     @Autowired
     private SecurityService securityService;
 
+    @Autowired
+    private RoleService roleService;
+
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public User registration(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("role") String role) {
+    public User registration(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("password") String passwordConfirm, @RequestParam("role") String role) {
         User newUser = new User();
         newUser.setUsername(username);
         newUser.setPasswordConfirm(password);
         newUser.setPassword(password);
         Set<Role> roles = new HashSet<>();
-        Role admin = new Role();
-        admin.setName(role);
-        roles.add(admin);
+        Role r = new Role();
+        r.setName(role);
+        roleService.createRoleIfNotFound(r);
+        roles.add(r);
         newUser.setRoles(roles);
-        userService.save(newUser);
-        return newUser;
+        return userService.save(username, password, passwordConfirm, role);
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public User login(@RequestParam("username") String username, @RequestParam("password") String password) {
-        User user = userService.findByUsername(username);
-        if(user.getPassword().equals(password)){
-            return user;
-        }
-
-        return null;
+        User user = userService.loginUser(username, password);
+        return user;
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
