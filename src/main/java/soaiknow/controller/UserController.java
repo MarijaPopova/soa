@@ -33,16 +33,6 @@ public class UserController {
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
     public User registration(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("password") String passwordConfirm, @RequestParam("role") String role) {
-        User newUser = new User();
-        newUser.setUsername(username);
-        newUser.setPasswordConfirm(password);
-        newUser.setPassword(password);
-        Set<Role> roles = new HashSet<>();
-        Role r = new Role();
-        r.setName(role);
-        roleService.createRoleIfNotFound(r);
-        roles.add(r);
-        newUser.setRoles(roles);
         return userService.save(username, password, passwordConfirm, role);
     }
 
