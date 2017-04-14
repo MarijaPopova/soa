@@ -6,7 +6,7 @@ package soaiknow.models;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -17,13 +17,16 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    private String fullName;
+    private String embg;
+    private String email;
     @Transient
     private String passwordConfirm;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     @JsonManagedReference
-    private Set<Role> roles;
+    protected List<Role> roles;
 
     public Long getId() {
         return id;
@@ -57,11 +60,37 @@ public class User {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEmbg() {
+        return embg;
+    }
+
+    public void setEmbg(String embg) {
+        this.embg = embg;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getPersonalinfo() {
+        return String.format("Name is: %s/t EMBG: %s/t %s",fullName,embg,email);
     }
 }

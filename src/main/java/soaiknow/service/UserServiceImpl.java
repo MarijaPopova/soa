@@ -11,7 +11,9 @@ import soaiknow.models.User;
 import soaiknow.repository.RoleRepository;
 import soaiknow.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -31,12 +33,15 @@ public class UserServiceImpl implements UserService {
             User user = new User();
             user.setPassword(bCryptPasswordEncoder.encode(password));
             user.setUsername(username);
-            Set<Role> roles = new HashSet<>();
+            List<Role> roles = new ArrayList<>();
             Role r = new Role();
             r.setName(role);
             roleService.createRoleIfNotFound(r);
             roles.add(r);
             user.setRoles(roles);
+            user.setEmail("");
+            user.setEmbg("");
+            user.setFullName("");
             return userRepository.save(user);
         }
 

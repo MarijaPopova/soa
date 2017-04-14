@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import soaiknow.models.Role;
 import soaiknow.repository.RoleRepository;
 
+import java.util.List;
+
 /**
  * Created by SimonaS on 12/04/2017.
  */
@@ -16,9 +18,10 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public void createRoleIfNotFound(Role role) {
-        Role r = roleRepository.findByName(role.getName());
 
-        if(r == null) {
+        List<Role> r = roleRepository.findByName(role.getName());
+
+        if(r.isEmpty()) {
             roleRepository.save(role);
         }
     }

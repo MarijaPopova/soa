@@ -6,6 +6,8 @@ package soaiknow.repository;
 import org.springframework.data.repository.CrudRepository;
 import soaiknow.models.Role;
 
+import java.util.List;
+
 public interface RoleRepository extends CrudRepository<Role, Long> {
-    Role findByName(String name);
+    List<Role> findByName(String name);
 }

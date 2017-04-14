@@ -21,7 +21,7 @@ public class RegisterSubject {
     private boolean isPaid;
     private boolean isPassed;
     private String grade;
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "student_id")
     private Student student;
 
