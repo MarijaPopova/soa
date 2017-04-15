@@ -18,25 +18,13 @@ public class Semester {
     private double paid;
     private boolean areTaxesPaid;
     private boolean isValid;
-    private String isRegistered;
+    private boolean isRegistered;
 
-    @ManyToMany
-    @JoinTable(name = "semester_subjects", joinColumns = @JoinColumn(name = "semester_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    private List<Subject> subjects;
 
     @ManyToMany(mappedBy = "semesters")
     private List<User> users;
 
-    public Semester(String name, String field, String quota, double price, double paid, boolean areTaxesPaid, boolean isValid, String isRegistered) {
-        this.name = name;
-        this.field = field;
-        this.quota = quota;
-        this.price = price;
-        this.paid = paid;
-        this.areTaxesPaid = areTaxesPaid;
-        this.isValid = isValid;
-        this.isRegistered = isRegistered;
-    }
+    public Semester(){}
 
     public void setName(String name) {
         this.name = name;
@@ -66,7 +54,7 @@ public class Semester {
         this.areTaxesPaid = areTaxesPaid;
     }
 
-    public void setIsRegistered(String isRegistered) {
+    public void setIsRegistered(boolean isRegistered) {
         this.isRegistered = isRegistered;
     }
 
@@ -98,7 +86,7 @@ public class Semester {
         return isValid;
     }
 
-    public String getIsRegistered() {
+    public boolean getIsRegistered() {
         return isRegistered;
     }
 }

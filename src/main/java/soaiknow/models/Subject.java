@@ -18,8 +18,6 @@ public class Subject {
     private boolean isPassed;
     private String grade;
 
-    @ManyToMany(mappedBy = "subjects")
-    private List<Semester> semesters;
 
     @OneToMany
     private List<RegisterSubject> registered;

@@ -20,6 +20,9 @@ public class RegisterSubject {
     @ManyToOne
     private Subject subject;
 
+    @ManyToOne
+    private User user;
+
     public RegisterSubject(Long serialNumber, boolean isConfirmed, Date date, boolean areTaxesPaid) {
         this.serialNumber = serialNumber;
         this.isConfirmed = isConfirmed;

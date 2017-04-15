@@ -28,9 +28,13 @@ public class User {
     @JsonManagedReference
     private List<Role> roles;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_semesters", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "semester_id"))
     private List<Semester> semesters;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "user_register", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "register_id"))
+    private List<RegisterSubject> registerSubjects;
 
     public Long getId() {
         return id;
@@ -90,7 +94,28 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getPersonalinfo() {
         return String.format("Name is: %s/t EMBG: %s/t %s",fullName,embg,email);
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<Semester> getSemesters() {
+        return semesters;
+    }
+
+    public void setSemesters(List<Semester> semesters) {
+        this.semesters = semesters;
+    }
+
+    public List<RegisterSubject> getRegisterSubjects() {
+        return registerSubjects;
+    }
+
+    public void setRegisterSubjects(List<RegisterSubject> registerSubjects) {
+        this.registerSubjects = registerSubjects;
     }
 }
