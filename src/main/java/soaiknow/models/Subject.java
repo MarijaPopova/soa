@@ -1,6 +1,7 @@
 package soaiknow.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by 133003 on 3/7/2017.
@@ -11,16 +12,20 @@ public class Subject {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String code;
-    private String nameSubject;
+    private String name;
     private String description;
-    private String profesor;
+    private String professor;
+    private boolean isPassed;
+    private String grade;
+
+    @ManyToMany(mappedBy = "subjects")
+    private List<Semester> semesters;
+
+    @OneToMany
+    private List<RegisterSubject> registered;
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCode() {
@@ -31,12 +36,12 @@ public class Subject {
         this.code = code;
     }
 
-    public String getNameSubject() {
-        return nameSubject;
+    public String getName() {
+        return name;
     }
 
-    public void setNameSubject(String nameSubject) {
-        this.nameSubject = nameSubject;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -47,13 +52,27 @@ public class Subject {
         this.description = description;
     }
 
-    public String getProfesor() {
-        return profesor;
+    public String getProfessor() {
+        return professor;
     }
 
-    public void setProfesor(String profesor) {
-        this.profesor = profesor;
+    public void setProfessor(String professor) {
+        this.professor = professor;
     }
 
+    public String getGrade() {
+        return grade;
+    }
 
+    public void setGrade(String grade) {
+        this.grade = grade;
+    }
+
+    public boolean isPassed() {
+        return isPassed;
+    }
+
+    public void setPassed(boolean passed) {
+        isPassed = passed;
+    }
 }

@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import soaiknow.models.Subject;
-import soaiknow.models.User;
 import soaiknow.repository.SubjectRepository;
 
 /**
@@ -27,8 +26,8 @@ public class AdminController {
        Subject subject = new Subject();
         subject.setCode(code);
         subject.setDescription(description);
-        subject.setNameSubject(nameSubject);
-        subject.setProfesor(profesor);
+        subject.setName(nameSubject);
+        subject.setProfessor(profesor);
       return  subjectRepository.save(subject);
     }
 

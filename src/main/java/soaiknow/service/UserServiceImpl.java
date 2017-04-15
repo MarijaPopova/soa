@@ -28,10 +28,13 @@ public class UserServiceImpl implements UserService {
     private RoleService roleService;
 
     @Override
-    public User save(String username, String password, String passwordConfirm, String role) {
+    public User save(String name, String lastName, String username, String email, String embg, String password, String passwordConfirm, String role) {
         if(password.equals(passwordConfirm)){
             User user = new User();
             user.setPassword(bCryptPasswordEncoder.encode(password));
+            user.setFullName(name + " " + lastName);
+            user.setEmail(email);
+            user.setEmbg(embg);
             user.setUsername(username);
             List<Role> roles = new ArrayList<>();
             Role r = new Role();
@@ -39,9 +42,6 @@ public class UserServiceImpl implements UserService {
             roleService.createRoleIfNotFound(r);
             roles.add(r);
             user.setRoles(roles);
-            user.setEmail("");
-            user.setEmbg("");
-            user.setFullName("");
             return userRepository.save(user);
         }
 

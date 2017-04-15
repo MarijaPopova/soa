@@ -32,8 +32,8 @@ public class UserController {
     private RoleService roleService;
 
     @RequestMapping(value = "register", method = RequestMethod.POST)
-    public User registration(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("password") String passwordConfirm, @RequestParam("role") String role) {
-        return userService.save(username, password, passwordConfirm, role);
+    public User registration(@RequestParam("username") String name, @RequestParam("username") String lastName, @RequestParam("username") String username, @RequestParam("username") String email, @RequestParam("username") String embg, @RequestParam("password") String password, @RequestParam("password") String passwordConfirm, @RequestParam("role") String role) {
+        return userService.save(name, lastName, username, email, embg, password, passwordConfirm, role);
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)

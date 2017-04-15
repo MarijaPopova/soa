@@ -10,5 +10,5 @@ import java.util.List;
  * Created by SimonaS on 17/03/2017.
  */
 public interface RegisterSubjectRepository extends CrudRepository<RegisterSubject, Long> {
-    List<RegisterSubject> findByStudent(User student);
+
 }

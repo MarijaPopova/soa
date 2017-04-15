@@ -31,12 +31,12 @@ public class StudentController {
     @Autowired
     private SubjectRepository subjectRepository;
 
-    @RequestMapping(value = "studentRegistry")
-    public List<RegisterSubject> listStudentRegisters(@RequestParam(value = "student") long id){
-        User user = userRepository.findOne(id);
-        List<RegisterSubject> registers = registerSubjectRepository.findByStudent(user);
-        return registers;
-    }
+//    @RequestMapping(value = "studentRegistry")
+//    public List<RegisterSubject> listStudentRegisters(@RequestParam(value = "student") long id){
+//        User user = userRepository.findOne(id);
+//        List<RegisterSubject> registers = registerSubjectRepository.findByStudent(user);
+//        return registers;
+//    }
     @RequestMapping(value = "personalInfo")
     public String personInfo(@RequestParam(value = "student") long id){
         User user = userRepository.findOne(id);

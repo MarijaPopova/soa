@@ -13,32 +13,18 @@ public class RegisterSubject {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private Long serialNumber;
-    private String subjectCode;
-    private String subjectName;
-    private String subjectProfessor;
     private boolean isConfirmed;
     private Date date;
-    private boolean isPaid;
-    private boolean isPassed;
-    private String grade;
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "student_id")
-    private Student student;
+    private boolean areTaxesPaid;
 
-    public RegisterSubject(Long serialNumber, String subjectCode, String subjectName, String subjectProfessor, boolean isConfirmed, Date date, boolean isPaid, boolean isPassed) {
+    @ManyToOne
+    private Subject subject;
+
+    public RegisterSubject(Long serialNumber, boolean isConfirmed, Date date, boolean areTaxesPaid) {
         this.serialNumber = serialNumber;
-        this.subjectCode = subjectCode;
-        this.subjectName = subjectName;
-        this.subjectProfessor = subjectProfessor;
         this.isConfirmed = isConfirmed;
         this.date = date;
-        this.isPaid = isPaid;
-        this.isPassed = isPassed;
-        this.grade = "5";
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
+        this.areTaxesPaid = areTaxesPaid;
     }
 
     public Long getId() {
@@ -57,7 +43,7 @@ public class RegisterSubject {
         return date;
     }
 
-    public boolean isPaid() {
-        return isPaid;
+    public boolean isAreTaxesPaid() {
+        return areTaxesPaid;
     }
 }
