@@ -28,7 +28,6 @@ public class StudentController {
     private UserRepository userRepository;
     @Autowired
     private SubjectRepository subjectRepository;
-
     @Autowired
     private SemesterRepository semesterRepository;
 
@@ -50,6 +49,20 @@ public class StudentController {
         subjectRepository.findAll().forEach(subjects::add);
         return subjects;
     }
+
+    @RequestMapping(value = "listSubjectsByExamSession")
+    public List<Subject> listSubjectsBySemester(@RequestParam(value = "examSession") String examSession){
+        List<RegisterSubject> registeredSubjects =
+                registerSubjectRepository.findByUserIdAndExamSession(1, examSession);
+        List<Subject> subjects = new ArrayList<>();
+
+        for(RegisterSubject registeredSubject : registeredSubjects){
+            subjects.add(registeredSubject.getSubject());
+        }
+
+        return subjects;
+    }
+
     @RequestMapping(value = "semestars")
      public List<Semester> listSemestars(@RequestParam(value = "student") long id){
         User user = userRepository.findOne(id);
@@ -73,4 +86,22 @@ public class StudentController {
         return semesterRepository.save(semester);
     }
 
+    @RequestMapping(value = "registerSubject", method = RequestMethod.POST)
+    public RegisterSubject register(@RequestParam("serialNumber") long serialNumber,
+                                    @RequestParam("examSession") String examSession,
+                                    @RequestParam("subject") long id){
+
+        User currentUser = userRepository.findOne((long) 1);
+        Subject subject = subjectRepository.findOne(id);
+        RegisterSubject register = new RegisterSubject();
+        register.setExamSession(examSession);
+        register.setSerialNumber(serialNumber);
+        register.setUser(currentUser);
+        register.setSubject(subject);
+        RegisterSubject registerSubject = registerSubjectRepository.save(register);
+        subject.addRegistered(registerSubject);
+        subjectRepository.save(subject);
+
+        return registerSubject;
+    }
 }

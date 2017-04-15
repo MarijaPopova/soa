@@ -16,6 +16,7 @@ public class RegisterSubject {
     private boolean isConfirmed;
     private Date date;
     private boolean areTaxesPaid;
+    private String examSession;
 
     @ManyToOne
     private Subject subject;
@@ -23,11 +24,18 @@ public class RegisterSubject {
     @ManyToOne
     private User user;
 
-    public RegisterSubject(Long serialNumber, boolean isConfirmed, Date date, boolean areTaxesPaid) {
+    public RegisterSubject(){
+        isConfirmed = false;
+        areTaxesPaid = false;
+        date = new Date();
+    }
+
+    public RegisterSubject(Long serialNumber, boolean isConfirmed, Date date, boolean areTaxesPaid, String examSession) {
         this.serialNumber = serialNumber;
         this.isConfirmed = isConfirmed;
         this.date = date;
         this.areTaxesPaid = areTaxesPaid;
+        this.examSession = examSession;
     }
 
     public Long getId() {
@@ -48,5 +56,33 @@ public class RegisterSubject {
 
     public boolean isAreTaxesPaid() {
         return areTaxesPaid;
+    }
+
+    public String getExamSession() {
+        return examSession;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setExamSession(String examSession) {
+        this.examSession = examSession;
+    }
+
+    public void setSerialNumber(Long serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

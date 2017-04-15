@@ -9,4 +9,5 @@ public interface UserService {
     User save(String name, String lastName, String username, String email, String embg, String password, String passwordConfirm, String role);
     User findByUsername(String username);
     User loginUser(String username, String password);
+    void deleteUser(long id);
 }
