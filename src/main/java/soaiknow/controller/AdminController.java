@@ -30,7 +30,10 @@ public class AdminController {
     private AnnouncementRepostiory announcementRepostiory;
 
     @RequestMapping(value = "insertUser", method = RequestMethod.POST)
-    public User insertUser(@RequestParam("name") String name, @RequestParam("lastName") String lastName, @RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("embg") String embg, @RequestParam("password") String password, @RequestParam("passwordConfirm") String passwordConfirm, @RequestParam("role") String role){
+    public User insertUser(@RequestParam("name") String name, @RequestParam("lastName") String lastName,
+                           @RequestParam("username") String username, @RequestParam("email") String email,
+                           @RequestParam("embg") String embg, @RequestParam("password") String password,
+                           @RequestParam("passwordConfirm") String passwordConfirm, @RequestParam("role") String role){
         return userService.save(name, lastName, username, email, embg, password, passwordConfirm, role);
     }
 

@@ -20,6 +20,7 @@ import java.util.List;
  * Created by SimonaS on 15/04/2017.
  */
 @RestController
+@RequestMapping(value = "/")
 public class ProfessorController {
 
     @Autowired
