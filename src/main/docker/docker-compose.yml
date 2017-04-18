@@ -11,14 +11,43 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
+   133003-eureka:
+      image: 133003/soaeureka
+      labels:
+        - "traefik.port=13386"
+        - "traefik.backend=my-eureka"
+        - "traefik.frontend.rule=Host:my-eureka.dck.mojserver.mk"
+      expose:
+        - "13386"
+      ports:
+        - "13386:13386"
+
+   133003-mysql:
+       image: mysql
+       environment:
+         MYSQL_ROOT_PASSWORD: databasepass!
+         MYSQL_USER: root
+         MYSQL_PASSWORD: databasepass!
+         MYSQL_DATABASE: iknow_db
+       volumes:
+         - my-datavolume:/var/lib/mysql
+       labels:
+         - "traefik.enable=false"
+
   my-app:
     image: 133003/soa
     labels:
       - "traefik.port=8080"
       - "traefik.backend=133003-app"
       - "traefik.frontend.rule=Host:133003-app.dck.mojserver.mk"
+    links:
+          - 133003-mysql
+          - 133003-eureka
     depends_on:
+      - 133003-mysql
       - 133003-traefik
+      - 133003-eureka
+
 
 volumes:
   133003-datavolume: {}
