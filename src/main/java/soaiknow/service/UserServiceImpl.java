@@ -12,9 +12,7 @@ import soaiknow.repository.RoleRepository;
 import soaiknow.repository.UserRepository;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {

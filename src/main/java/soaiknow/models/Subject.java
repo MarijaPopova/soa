@@ -23,6 +23,9 @@ public class Subject {
     @OneToMany(cascade = CascadeType.ALL)
     private List<RegisterSubject> registered;
 
+    @ManyToMany(mappedBy = "subjects")
+    private List<User> semesters;
+
     public Subject(){}
 
     public Subject(String code, String name, String description, String professor){

@@ -24,6 +24,10 @@ public class Semester {
     @ManyToMany(mappedBy = "semesters")
     private List<User> users;
 
+    @ManyToMany
+    @JoinTable(name = "semester_subjects", joinColumns = @JoinColumn(name = "semester_id"), inverseJoinColumns = @JoinColumn(name = "subject_id"))
+    private List<Semester> subjects;
+
     public Semester(){}
 
     public void setName(String name) {
